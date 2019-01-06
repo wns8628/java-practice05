@@ -1,28 +1,22 @@
 package prob5;
 
-public class MyStack {
+public class MyStack<T>{
 	private int top = -1;
-	private String[] buffer;
-	
-	private String[] Bigbuffer;
-	private int arrlength;
-	
-	
+	private T[] buffer;
+		
 	@SuppressWarnings("unchecked")
 	public MyStack(int capacity) {
-		buffer = new String[capacity];
-		arrlength = capacity;
+		buffer = (T[])new Object[capacity];
 	}
 
 	
-	public void push(String s) {
+	public void push(T s) {
 		top++;
-		if(top < arrlength) {
+		if(top < buffer.length) {
 			buffer[top] = s;
-		}if(top >= arrlength) {
-			
-			arrlength = arrlength*2;
-			Bigbuffer = new String[arrlength];
+		}if(top >= buffer.length) {
+		
+			T[] Bigbuffer = (T[])new Object[buffer.length*2];
 			System.arraycopy(buffer, 0, Bigbuffer, 0, buffer.length);
 			buffer=Bigbuffer;
 			
@@ -30,14 +24,16 @@ public class MyStack {
 		}
 	}
 
-	public String pop() throws MyStackException {
+	public T pop() throws MyStackException {
+		
 		if(isEmpty()) {
-			new MyStackException("에러발생");
+			throw new MyStackException("스택이 비었습니다.");
+		} else {
+			T temp = buffer[top];
+			buffer[top] = null;
+			top--;
+			return temp;
 		}
-		String temp = buffer[top];
-		buffer[top] = null;
-		top--;
-	  return temp;
 	}
 
 	public boolean isEmpty() {

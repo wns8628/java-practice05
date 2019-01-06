@@ -12,6 +12,11 @@ public class SmartPhone extends MusicPhone {
 		super.execute( function );
 	}
 	
+	@Override 
+	protected void playMusic() { 
+	 		System.out.println( "다운로드해서 음악 재생" ); 
+	} 
+
 	protected void playApp() {
 		System.out.println("앱실행");
 	}

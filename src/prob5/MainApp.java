@@ -4,15 +4,15 @@ public class MainApp {
 
 	public static void main(String[] args) {
 		try {
-			MyStack stack = new MyStack(3);
-			stack.push("Hello");
-			stack.push("World");
-			stack.push("!!!");
-			stack.push("java");
-			stack.push(".");
+			MyStack<String> stack = new MyStack<String>(3); //1. 스트링만 담겠다. 하면 제너릭더추가
+			stack.push("요");
+			stack.push("세");
+			stack.push("하");
+			stack.push("녕");
+			stack.push("안");
 
 			while (stack.isEmpty() == false) {
-				String s = stack.pop();
+				Object s = stack.pop();
 				System.out.println( s );
 			}
 
